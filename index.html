@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Uzair Zaidi — Data Science Portfolio</title>
+  <meta name="description" content="Portfolio of data science and analytics projects: ML, NLP, forecasting, visualization, and more." />
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#121720; --text:#e7eef7; --muted:#9fb0c7; --acc:#63b3ff; --good:#28c76f; --bad:#ff5b5b; --card:#0e141d;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial,sans-serif}
+    a{color:var(--acc);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1100px;margin:0 auto;padding:28px}
+    header{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;gap:14px;align-items:center}
+    .avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(145deg,#15202b,#0c121a);display:grid;place-items:center;color:#9fd0ff;font-weight:700}
+    .brand h1{font-size:1.25rem;margin:0}
+    .brand p{margin:0;color:var(--muted);font-size:.95rem}
+    nav{display:flex;gap:18px}
+    nav a{color:var(--text);opacity:.9}
+    nav a.active, nav a:hover{color:var(--acc)}
+    .hero{background:linear-gradient(180deg,rgba(99,179,255,.12),transparent);border:1px solid rgba(99,179,255,.18);border-radius:18px;padding:26px;margin:12px 0 24px}
+    .hero h2{margin:0 0 8px;font-size:1.6rem}
+    .hero p{margin:0;color:var(--muted)}
+    .btns{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+    .btn{background:var(--acc);color:#05223a;border:none;padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer}
+    .btn.secondary{background:#182332;color:var(--text);border:1px solid #263244}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .card{grid-column:span 12;background:var(--card);border:1px solid #1c2838;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+    .card h3{margin:0;font-size:1.05rem}
+    .meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.9rem}
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{font-size:.8rem;padding:4px 8px;border-radius:999px;background:#162133;border:1px solid #263244;color:#c7d7ee}
+    .row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+    .kpi{background:#0c121a;border:1px dashed #243246;border-radius:12px;padding:10px 12px;color:#cfe6ff}
+    .footer{color:var(--muted);font-size:.9rem;padding:18px 0;text-align:center}
+    .bad{color:var(--bad)} .good{color:var(--good)}
+    .search{display:flex;gap:10px;align-items:center;background:#0f1520;border:1px solid #233144;border-radius:12px;padding:8px 12px;margin:12px 0}
+    .search input{flex:1;background:transparent;border:none;color:var(--text);outline:none}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 18px}
+    .toggle{margin-left:auto}
+
+    /* Responsive */
+    @media (min-width:680px){
+      .card{grid-column:span 6}
+    }
+    @media (min-width:980px){
+      .card{grid-column:span 4}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="avatar">UZ</div>
+        <div>
+          <h1>Uzair Zaidi</h1>
+          <p>Data Science • ML • Markets — London</p>
+        </div>
+      </div>
+      <nav>
+        <a href="#projects" class="active">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h2>Turning data into decisions</h2>
+      <p>I build practical ML systems and analytics that ship: forecasting, NLP, recommender systems, and quant research. Below are selected projects with code, write‑ups, and live demos.</p>
+      <div class="btns">
+        <a class="btn" href="mailto:uzair@example.com">Email</a>
+        <a class="btn secondary" href="https://github.com/uzairzaidi" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn secondary" href="#resume">Résumé</a>
+      </div>
+    </section>
+
+    <div class="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21l-3.8-3.8" stroke="#9fb0c7" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="7" stroke="#9fb0c7" stroke-width="2"/></svg>
+      <input id="q" placeholder="Search projects (e.g., NLP, LSTM, dashboard)" />
+      <button id="clear" class="btn secondary">Clear</button>
+      <label class="toggle"><input type="checkbox" id="darkToggle"/> Dark</label>
+    </div>
+
+    <div class="filters" id="filters"></div>
+
+    <section id="projects" class="grid"></section>
+
+    <section id="about" style="margin-top:32px">
+      <h2>About</h2>
+      <p>I'm a data scientist with experience across fintech, private equity, and analytics consulting. I work end‑to‑end: framing the problem, data engineering, modeling, MLOps, and stakeholder‑friendly communication. Comfortable with Python, SQL, R, and modern ML stacks.</p>
+      <div class="row" style="margin-top:10px">
+        <div class="kpi">Python • Pandas • scikit‑learn • XGBoost • PyTorch • LightGBM</div>
+        <div class="kpi">NLP • Transformers • LLMOps • Vector DBs</div>
+        <div class="kpi">Tableau • PowerBI • Plotly • Dash</div>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:32px">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:uzair@example.com">uzair@example.com</a> · GitHub: <a href="https://github.com/uzairzaidi" target="_blank" rel="noopener">@uzairzaidi</a> · LinkedIn: <a href="#" target="_blank" rel="noopener">linkedin.com/in/uzairzaidi</a></p>
+    </section>
+
+    <p class="footer">© <span id="year"></span> Uzair Zaidi • Built with vanilla HTML/CSS/JS • Optimized for GitHub Pages</p>
+  </div>
+
+  <script>
+    // ---- CONFIGURE YOUR PROJECTS HERE ----
+    const PROJECTS = [
+      {
+        title: "LSTM + Macro Features — Equity Price Forecasting",
+        blurb: "Hybrid model with PCA feature compression, regime filters, and walk‑forward validation.",
+        tags: ["time-series","LSTM","PCA","backtesting","finance"],
+        repo: "https://github.com/uzairzaidi/lstm-equity-forecast",
+        demo: "",
+        highlights: ["+19% SR over baseline","purged CV","probability‑calibrated"]
+      },
+      {
+        title: "AIP‑Style Analytics — Enterprise KPI Co‑pilot",
+        blurb: "LLM‑augmented analytics agent that turns SQL + docs into business answers.",
+        tags: ["LLM","NLP","agent","retrieval","dashboard"],
+        repo: "https://github.com/uzairzaidi/analytics-copilot",
+        demo: "",
+        highlights: ["retrieval‑augmented","toolformer","guardrails"]
+      },
+      {
+        title: "Outfit Recommender — Weather × Fashion Rules",
+        blurb: "Gradient boosted ranking with rules engine and image generation pipeline.",
+        tags: ["recommender","MLOps","ETL","computer-vision"],
+        repo: "https://github.com/uzairzaidi/ootd",
+        demo: "",
+        highlights: ["A/B tested","5‑minute ETL","CORS API"]
+      },
+      {
+        title: "London Housing — Ensemble Regression",
+        blurb: "Stacked models (LGBM/XGB/ElasticNet) with SHAP explainability and error maps.",
+        tags: ["regression","tabular","explainability","shap"],
+        repo: "https://github.com/uzairzaidi/london-housing-ensemble",
+        demo: "",
+        highlights: ["MAE ↓ 23%","geospatial EDA","clean data pack"]
+      }
+    ];
+
+    // ---- RENDERER ----
+    const grid = document.querySelector('#projects');
+    const filterWrap = document.querySelector('#filters');
+    const q = document.querySelector('#q');
+    const clearBtn = document.querySelector('#clear');
+    const yearEl = document.querySelector('#year');
+    yearEl.textContent = new Date().getFullYear();
+
+    // Build tag universe
+    const tagSet = new Set(PROJECTS.flatMap(p => p.tags));
+    const tags = Array.from(tagSet).sort();
+
+    function renderFilters(){
+      filterWrap.innerHTML = '';
+      tags.forEach(t => {
+        const b = document.createElement('button');
+        b.className = 'btn secondary';
+        b.textContent = t;
+        b.onclick = () => toggleTag(t);
+        b.dataset.tag = t;
+        filterWrap.appendChild(b);
+      });
+    }
+
+    const activeTags = new Set();
+    function toggleTag(t){
+      if(activeTags.has(t)) activeTags.delete(t); else activeTags.add(t);
+      renderGrid();
+      highlightActive();
+    }
+    function highlightActive(){
+      document.querySelectorAll('[data-tag]').forEach(el=>{
+        el.className = activeTags.has(el.dataset.tag) ? 'btn' : 'btn secondary';
+      })
+    }
+
+    function pass(p){
+      const text = (p.title+" "+p.blurb+" "+p.tags.join(" ")).toLowerCase();
+      const qok = !q.value || text.includes(q.value.toLowerCase());
+      const tok = activeTags.size===0 || p.tags.some(t=>activeTags.has(t));
+      return qok && tok;
+    }
+
+    function card(p){
+      const wrap = document.createElement('article');
+      wrap.className = 'card';
+      wrap.innerHTML = `
+        <h3>${p.title}</h3>
+        <p>${p.blurb}</p>
+        <div class="chips">${p.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div>
+        <div class="meta">
+          ${p.highlights?.slice(0,3).map(h=>`<span class="kpi">${h}</span>`).join('')}
+        </div>
+        <div class="row">
+          ${p.repo?`<a class="btn" href="${p.repo}" target="_blank" rel="noopener">Code</a>`:''}
+          ${p.demo?`<a class="btn secondary" href="${p.demo}" target="_blank" rel="noopener">Demo</a>`:''}
+        </div>`;
+      return wrap;
+    }
+
+    function renderGrid(){
+      grid.innerHTML='';
+      PROJECTS.filter(pass).forEach(p=>grid.appendChild(card(p)));
+    }
+
+    q.addEventListener('input', renderGrid);
+    clearBtn.onclick = ()=>{ q.value=''; renderGrid(); };
+
+    // Dark toggle
+    const darkToggle = document.getElementById('darkToggle');
+    darkToggle.addEventListener('change', e => {
+      document.body.style.background = e.target.checked ? '#ffffff' : 'var(--bg)';
+      document.body.style.color = e.target.checked ? '#0b0f14' : 'var(--text)';
+    });
+
+    renderFilters();
+    renderGrid();
+  </script>
+</body>
+</html>
