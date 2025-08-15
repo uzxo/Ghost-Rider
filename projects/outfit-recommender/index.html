@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Outfit Recommendation System — Weather × Fashion Rules</title>
+  <meta name="description" content="An outfit recommender that blends weather data, fashion rules, and ML ranking, with an ETL pipeline and R-based API." />
+  <style>
+    :root{--bg:#0b0f14;--panel:#121720;--text:#e7eef7;--muted:#9fb0c7;--acc:#63b3ff;--card:#0e141d}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:var(--acc);text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{max-width:980px;margin:0 auto;padding:28px}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .title{font-weight:700;font-size:1.25rem}
+    .muted{color:var(--muted)}
+    .hero{background:linear-gradient(180deg,rgba(99,179,255,.12),transparent);border:1px solid rgba(99,179,255,.18);border-radius:16px;padding:18px;margin:8px 0 18px}
+    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    .btn{background:var(--acc);color:#05223a;border:none;padding:10px 14px;border-radius:10px;font-weight:600}
+    .btn.secondary{background:#182332;color:var(--text);border:1px solid #263244}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:16px}
+    .card{grid-column:span 12;background:var(--card);border:1px solid #1c2838;border-radius:14px;padding:14px}
+    .card h3{margin:0 0 6px}
+    .code{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;background:#0c121a;border:1px dashed #243246;border-radius:10px;padding:10px;overflow:auto}
+    img.preview{width:100%;max-height:380px;object-fit:cover;border-radius:12px;border:1px solid #1c2838}
+    @media (min-width:900px){ .half{grid-column:span 6} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="title">Outfit Recommendation System</div>
+        <div class="muted">Weather × Fashion rules × ML ranking • R + Bash + ETL</div>
+      </div>
+      <a href="/Ghost-Rider/" class="muted">← Back to Portfolio</a>
+    </header>
+
+    <section class="hero">
+      <p>
+        A production-style pipeline that suggests daily outfits by combining
+        live/queried weather, a rules engine (e.g., temperature-aware layers, fabric constraints),
+        and an ML ranker. Includes ETL for catalog data, an R API for inference, and
+        a bash runner to orchestrate the workflow.
+      </p>
+      <div class="btns">
+        <a class="btn" href="./report.pdf" target="_blank" rel="noopener">Read Executive Summary (PDF)</a>
+        <a class="btn secondary" href="https://github.com/uzxo/Ghost-Rider/tree/main/projects/outfit-recommender" target="_blank" rel="noopener">View Code on GitHub</a>
+        <a class="btn secondary" href="./ootd_plot.png" target="_blank" rel="noopener">Preview Plot</a>
+      </div>
+    </section>
+
+    <div class="grid">
+      <article class="card half">
+        <h3>How it works</h3>
+        <ul>
+          <li><strong>ETL:</strong> <code>etl.R</code> ingests and cleans catalog + metadata.</li>
+          <li><strong>Weather:</strong> <code>weatherstack_api.R</code> pulls conditions used as features.</li>
+          <li><strong>Recommender:</strong> <code>ootd_api.R</code> applies fashion rules &amp; ML ranking.</li>
+          <li><strong>Automation:</strong> <code>run_pipeline.sh</code> orchestrates the end-to-end job.</li>
+          <li><strong>Scraping:</strong> <code>product_scraping.R</code> builds/refreshes the item catalog.</li>
+        </ul>
+      </article>
+
+      <article class="card half">
+        <h3>Quick start (local)</h3>
+        <div class="code">
+# Install R deps in your environment, then:
+# 1) ETL
+Rscript etl.R
+
+# 2) (Optional) scrape/refresh catalog
+Rscript product_scraping.R
+
+# 3) Run API/pipeline locally
+bash run_pipeline.sh
+# or
+Rscript run_ootd_api.R
+        </div>
+        <p class="muted">Note: GitHub Pages cannot execute R/bash. Run locally or in a server environment.</p>
+      </article>
+
+      <article class="card">
+        <h3>Artifacts</h3>
+        <ul>
+          <li><a href="./report.pdf" target="_blank" rel="noopener">Executive summary (report.pdf)</a></li>
+          <li><a href="./README.md" target="_blank" rel="noopener">README.md</a></li>
+          <li><a href="./products_raw.csv" target="_blank" rel="noopener">products_raw.csv</a></li>
+          <li>Scripts: <a href="./etl.R" target="_blank">etl.R</a> · <a href="./weatherstack_api.R" target="_blank">weatherstack_api.R</a> · <a href="./ootd_api.R" target="_blank">ootd_api.R</a> · <a href="./run_ootd_api.R" target="_blank">run_ootd_api.R</a> · <a href="./product_scraping.R" target="_blank">product_scraping.R</a> · <a href="./run_pipeline.sh" target="_blank">run_pipeline.sh</a></li>
+          <li>Images: <a href="./images/" target="_blank" rel="noopener">/images</a></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <img class="preview" src="./ootd_plot.png" alt="Outfit recommender preview plot" />
+      </article>
+    </div>
+
+    <p class="muted" style="margin-top:18px">Contact: <a href="mailto:uzxo11@gmail.com">uzxo11@gmail.com</a> · GitHub: <a href="https://github.com/uzxo" target="_blank" rel="noopener">@uzxo</a></p>
+  </div>
+</body>
+</html>
