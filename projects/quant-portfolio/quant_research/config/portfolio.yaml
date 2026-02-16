@@ -1,0 +1,39 @@
+# ============================================================
+# Portfolio Construction Configuration
+# ============================================================
+
+optimizer: "black_litterman"         # black_litterman | hrp | risk_parity | cvar | mean_variance
+
+covariance:
+  method: "ledoit_wolf"              # ledoit_wolf | factor_model | sample | ewma
+  ewma_halflife: 60                  # Days, for EWMA method
+  min_history: 252                   # Minimum days for covariance estimation
+
+black_litterman:
+  tau: 0.05                          # Uncertainty on equilibrium
+  confidence_from_ic: true           # Scale omega by trailing IC
+  market_cap_weighted_prior: true
+
+hrp:
+  linkage: "single"                  # single | complete | ward
+  distance_metric: "correlation"
+
+risk_parity:
+  alpha_tilt: true
+  tilt_budget: 0.03                  # Max tracking error from alpha tilt
+
+cvar:
+  confidence_level: 0.95
+  method: "historical"               # historical | monte_carlo
+  n_simulations: 10000
+
+constraints:
+  long_only: true
+  max_weight: 0.05
+  min_weight: 0.005
+  max_sector_deviation: 0.03
+  max_turnover_oneway: 0.30
+  target_vol: 0.12
+  beta_neutral: false
+  beta_range: [0.90, 1.10]
+  factor_neutral: false              # Zero net SMB/HML exposure

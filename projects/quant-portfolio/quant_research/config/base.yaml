@@ -1,0 +1,94 @@
+# ============================================================
+# Quant Research Framework — Base Configuration
+# ============================================================
+
+universe:
+  # Point-in-time S&P 500 constituents
+  index: "sp500"
+  min_market_cap: 500_000_000        # $500M minimum
+  min_adv: 5_000_000                 # $5M average daily dollar volume
+  listing_buffer_days: 22            # Exclude IPOs < 22 trading days old
+  exclude_types: ["ETF", "ADR", "SPAC", "REIT"]
+  # Fallback static universe (used if point-in-time not available)
+  fallback_tickers:
+    - AAPL
+    - MSFT
+    - AMZN
+    - GOOGL
+    - META
+    - NVDA
+    - JPM
+    - JNJ
+    - PG
+    - UNH
+    - V
+    - HD
+    - MA
+    - XOM
+    - CVX
+    - PFE
+    - ABBV
+    - MRK
+    - KO
+    - PEP
+    - COST
+    - WMT
+    - MCD
+    - LLY
+    - TMO
+    - DHR
+    - NEE
+    - LIN
+    - ACN
+    - TXN
+    - AVGO
+    - QCOM
+    - INTC
+    - CRM
+    - AMD
+    - GS
+    - MS
+    - BLK
+    - C
+    - WFC
+    - BAC
+    - CAT
+    - DE
+    - HON
+    - LMT
+    - GE
+    - RTX
+    - BA
+    - UPS
+    - FDX
+
+dates:
+  start: "2016-01-01"
+  end: "2025-12-31"
+  holdout_start: "2024-07-01"       # Last 18 months reserved
+
+backtest:
+  rebalance_frequency: "monthly"     # monthly | quarterly
+  walk_forward: "expanding"          # expanding | rolling
+  rolling_window_months: 60          # Only if rolling
+  embargo_days: 5                    # Gap between train/test
+  purge_days: 21                     # Purge overlapping labels
+
+portfolio:
+  num_holdings: 40
+  max_weight: 0.05                   # 5% max per name
+  min_weight: 0.005                  # 0.5% min per name
+  max_sector_deviation: 0.03         # +/-3% vs benchmark
+  max_turnover: 0.30                 # 30% one-way per rebalance
+  target_volatility: 0.12            # 12% annualized
+  beta_range: [0.90, 1.10]
+
+costs:
+  commission_bps: 1.0                # 1 bp per side
+  spread_bps: 2.0                    # Estimated half-spread
+  market_impact_eta: 0.2             # Square-root impact coefficient
+
+risk_free_rate: 0.04                 # 4% annual (current regime)
+
+seed: 42
+log_level: "INFO"
