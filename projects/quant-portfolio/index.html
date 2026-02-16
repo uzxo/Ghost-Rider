@@ -20,7 +20,7 @@
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:14px}
     .card{grid-column:span 12;background:var(--card);border:1px solid var(--b);border-radius:14px;padding:14px}
     img{width:100%;border-radius:12px;border:1px solid var(--b);background:#0c121a}
-    .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#0c121a;border:1px dashed #243246;border-radius:10px;padding:10px;overflow:auto}
+    .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#0c121a;border:1px solid #1c2838;border-radius:10px;padding:10px;overflow:auto}
     @media(min-width:980px){ .half{grid-column:span 6} }
   </style>
 </head>
@@ -41,17 +41,17 @@
         (bootstrap + stress regimes + holdouts).
       </div>
       <div class="btns">
-        <a class="btn s" href="./requirements.txt" target="_blank" rel="noopener">requirements.txt</a>
+        <a class="btn s" href="./quant_research/requirements.txt" target="_blank" rel="noopener">requirements.txt</a>
         <a class="btn s" href="https://github.com/uzxo/Ghost-Rider/tree/main/projects/quant-portfolio" target="_blank" rel="noopener">View Code</a>
-        <a class="btn" href="./Executive_Summary_Updated.docx" target="_blank" rel="noopener">Executive Summary</a>
+        <a class="btn" href="./quant_research/Executive_Summary_Updated.docx" target="_blank" rel="noopener">Executive Summary</a>
       </div>
     </div>
 
     <div class="grid">
       <div class="card half">
         <h3 style="margin:0 0 8px">Quick start</h3>
-        <div class="code">pip install -r requirements.txt
-python src/main.py --config config/base.yaml</div>
+        <div class="code">pip install -r quant_research/requirements.txt
+python quant_research/main.py --config quant_research/config/base.yaml</div>
         <p class="muted" style="margin:8px 0 0">GitHub Pages can’t run Python; this page is a showcase + links.</p>
       </div>
 
@@ -66,14 +66,15 @@ python src/main.py --config config/base.yaml</div>
         </ul>
       </div>
 
-      <div class="card"><h3 style="margin:0 0 8px">Portfolio vs S&P 500</h3><img src="./assets/equity_curve.png" alt="Equity curve vs S&P 500"></div>
-      <div class="card"><h3 style="margin:0 0 8px">Rolling Sharpe / Volatility / Drawdown</h3><img src="./assets/rolling_metrics.png" alt="Rolling metrics"></div>
-      <div class="card half"><h3 style="margin:0 0 8px">Bootstrap Sharpe (CI)</h3><img src="./assets/bootstrap_sharpe.png" alt="Bootstrap Sharpe distribution"></div>
-      <div class="card half"><h3 style="margin:0 0 8px">Current Portfolio Weights</h3><img src="./assets/portfolio_weights.png" alt="Portfolio weights"></div>
-      <div class="card"><h3 style="margin:0 0 8px">Factor Attribution</h3><img src="./assets/factor_attribution.png" alt="Factor attribution"></div>
+      <div class="card"><h3 style="margin:0 0 8px">Portfolio vs S&P 500</h3><img src="./quant_research/output/equity_curve.png" alt="Equity curve vs S&P 500"></div>
+      <div class="card"><h3 style="margin:0 0 8px">Rolling Sharpe / Volatility / Drawdown</h3><img src="./quant_research/output/rolling_metrics.png" alt="Rolling metrics"></div>
+      <div class="card half"><h3 style="margin:0 0 8px">Bootstrap Sharpe (CI)</h3><img src="./quant_research/output/bootstrap_sharpe.png" alt="Bootstrap Sharpe distribution"></div>
+      <div class="card half"><h3 style="margin:0 0 8px">Current Portfolio Weights</h3><img src="./quant_research/output/portfolio_weights.png" alt="Portfolio weights"></div>
+      <div class="card"><h3 style="margin:0 0 8px">Factor Attribution</h3><img src="./quant_research/output/factor_attribution.png" alt="Factor attribution"></div>
     </div>
 
     <p class="muted" style="margin-top:16px">Contact: <a href="mailto:uzxo11@gmail.com">uzxo11@gmail.com</a> · GitHub: <a href="https://github.com/uzxo" target="_blank" rel="noopener">@uzxo</a></p>
   </div>
 </body>
 </html>
+
