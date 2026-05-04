@@ -1,101 +1,218 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Outfit Recommendation System — Weather × Fashion Rules</title>
-  <meta name="description" content="An outfit recommender that blends weather data, fashion rules, and ML ranking, with an ETL pipeline and R-based API." />
-  <style>
-    :root{--bg:#0b0f14;--panel:#121720;--text:#e7eef7;--muted:#9fb0c7;--acc:#63b3ff;--card:#0e141d}
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-    a{color:var(--acc);text-decoration:none} a:hover{text-decoration:underline}
-    .wrap{max-width:980px;margin:0 auto;padding:28px}
-    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-    .title{font-weight:700;font-size:1.25rem}
-    .muted{color:var(--muted)}
-    .hero{background:linear-gradient(180deg,rgba(99,179,255,.12),transparent);border:1px solid rgba(99,179,255,.18);border-radius:16px;padding:18px;margin:8px 0 18px}
-    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-    .btn{background:var(--acc);color:#05223a;border:none;padding:10px 14px;border-radius:10px;font-weight:600}
-    .btn.secondary{background:#182332;color:var(--text);border:1px solid #263244}
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:16px}
-    .card{grid-column:span 12;background:var(--card);border:1px solid #1c2838;border-radius:14px;padding:14px}
-    .card h3{margin:0 0 6px}
-    .code{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;background:#0c121a;border:1px dashed #243246;border-radius:10px;padding:10px;overflow:auto}
-    img.preview{width:100%;max-height:380px;object-fit:cover;border-radius:12px;border:1px solid #1c2838}
-    @media (min-width:900px){ .half{grid-column:span 6} }
-  </style>
+  <title>Outfit Recommender — Weather × Rules · Uzair Zaidi</title>
+  <meta name="description" content="An R-based outfit recommendation pipeline that blends weather APIs, retail product scraping, and a rules-driven engine to suggest daily outfits." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../_shared/editorial.css">
+  <script>
+    (function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+  </script>
 </head>
 <body>
   <div class="wrap">
-    <header>
-      <div>
-        <div class="title">Outfit Recommendation System</div>
-        <div class="muted">Weather × Fashion rules × ML ranking • R + Bash + ETL</div>
+
+    <header class="site">
+      <div class="mark">
+        <span class="num">№ 04</span>
+        <span class="name"><a href="../../">Uzair Zaidi</a></span>
       </div>
-      <a href="/Ghost-Rider/" class="muted">← Back to Portfolio</a>
+      <nav class="site">
+        <a href="../../#work">Work</a>
+        <a href="../../#about">About</a>
+        <a href="../../#contact">Contact</a>
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="themeIcon"></svg>
+          <span id="themeLabel">Light</span>
+        </button>
+      </nav>
     </header>
 
+    <div class="breadcrumb">
+      <a href="../../">Portfolio</a><span class="sep">/</span><a href="../../#work">Work</a><span class="sep">/</span>Outfit Recommender
+    </div>
+
     <section class="hero">
-      <p>
-        A production-style pipeline that suggests daily outfits by combining
-        live/queried weather, a rules engine (e.g., temperature-aware layers, fabric constraints),
-        and an ML ranker. Includes ETL for catalog data, an R API for inference, and
-        a bash runner to orchestrate the workflow.
-      </p>
-      <div class="btns">
-        <a class="btn" href="./report.pdf" target="_blank" rel="noopener">Read Executive Summary (PDF)</a>
-        <a class="btn secondary" href="https://github.com/uzxo/Ghost-Rider/tree/main/projects/outfit-recommender" target="_blank" rel="noopener">View Code on GitHub</a>
-        <a class="btn secondary" href="./ootd_plot.png" target="_blank" rel="noopener">Preview Plot</a>
+      <div class="eyebrow">Project № 04 · Recommender / R + Bash</div>
+      <h1 class="lede serif">An <em>OOTD</em> recommender, wired end to end.</h1>
+      <p class="dek">A production-style pipeline that picks an outfit each day based on the weather in London. Scrapes a product catalog, persists it to SQLite, calls the Weatherstack API, applies a rules engine, and serves the result through a Plumber API — all orchestrated by a single bash script.</p>
+
+      <div class="cta-row">
+        <a class="cta primary" href="ootd_plot.png" target="_blank" rel="noopener">
+          See sample output
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+        <a class="cta" href="README.md" target="_blank" rel="noopener">Read README</a>
+        <a class="cta" href="https://github.com/uzxo/Ghost-Rider/tree/main/projects/outfit-recommender" target="_blank" rel="noopener">View source</a>
+        <a class="cta" href="../../">Back to portfolio</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b>Stack</b><span class="serif">R + Bash</span></div>
+        <div class="stat"><b>Catalog</b><span class="serif">25+ items</span></div>
+        <div class="stat"><b>API</b><span class="serif">Plumber</span></div>
+        <div class="stat"><b>Endpoints</b><span class="serif">2</span></div>
       </div>
     </section>
 
-    <div class="grid">
-      <article class="card half">
-        <h3>How it works</h3>
-        <ul>
-          <li><strong>ETL:</strong> <code>etl.R</code> ingests and cleans catalog + metadata.</li>
-          <li><strong>Weather:</strong> <code>weatherstack_api.R</code> pulls conditions used as features.</li>
-          <li><strong>Recommender:</strong> <code>ootd_api.R</code> applies fashion rules &amp; ML ranking.</li>
-          <li><strong>Automation:</strong> <code>run_pipeline.sh</code> orchestrates the end-to-end job.</li>
-          <li><strong>Scraping:</strong> <code>product_scraping.R</code> builds/refreshes the item catalog.</li>
-        </ul>
-      </article>
+    <figure class="figure" style="margin-top:48px">
+      <img src="ootd_plot.png" alt="Annotated outfit-of-the-day output for current weather in London" />
+      <figcaption>Sample output · annotated outfit-of-the-day for today's weather in London</figcaption>
+    </figure>
 
-      <article class="card half">
-        <h3>Quick start (local)</h3>
-        <div class="code">
-# Install R deps in your environment, then:
-# 1) ETL
-Rscript etl.R
-
-# 2) (Optional) scrape/refresh catalog
-Rscript product_scraping.R
-
-# 3) Run API/pipeline locally
-bash run_pipeline.sh
-# or
-Rscript run_ootd_api.R
+    <section class="section">
+      <div class="section-head">
+        <h2 class="serif"><em>What it is</em></h2>
+        <span class="count">Overview</span>
+      </div>
+      <div class="grid-2">
+        <div>
+          <p class="lead">A small but complete recommender system, built as the final project for an analytics engineering course. The brief was deliberately broad — solve a real problem, end to end, with no hidden cloud-only steps. The result is a self-contained pipeline that you can clone, set an API key, and run.</p>
+          <p>The system scrapes a clothing catalog from ASOS, persists products and images into a SQLite database, fetches the current weather for London via the Weatherstack API, applies a small rules engine (temperature thresholds, rain handling, sun detection) to pick a top, bottom, shoes, coat and accessory, then renders the result as an annotated PNG.</p>
         </div>
-        <p class="muted">Note: GitHub Pages cannot execute R/bash. Run locally or in a server environment.</p>
-      </article>
+        <div>
+          <p>It runs as a Plumber API with two endpoints: <code>/ootd</code> returns the day's recommendation as JSON and writes the plot to disk; <code>/rawdata</code> dumps the full catalog. A single bash script chains the entire workflow — from scrape to plot — into one command.</p>
+          <p>The interesting bits are not the rules themselves; they are the seams between R, bash, an external API, and a tiny database. This is what an end-to-end pipeline looks like when you write it from first principles in 2-3 days.</p>
+        </div>
+      </div>
+    </section>
 
-      <article class="card">
-        <h3>Artifacts</h3>
-        <ul>
-          <li><a href="./report.pdf" target="_blank" rel="noopener">Executive summary (report.pdf)</a></li>
-          <li><a href="./README.md" target="_blank" rel="noopener">README.md</a></li>
-          <li><a href="./products_raw.csv" target="_blank" rel="noopener">products_raw.csv</a></li>
-          <li>Scripts: <a href="./etl.R" target="_blank">etl.R</a> · <a href="./weatherstack_api.R" target="_blank">weatherstack_api.R</a> · <a href="./ootd_api.R" target="_blank">ootd_api.R</a> · <a href="./run_ootd_api.R" target="_blank">run_ootd_api.R</a> · <a href="./product_scraping.R" target="_blank">product_scraping.R</a> · <a href="./run_pipeline.sh" target="_blank">run_pipeline.sh</a></li>
-          <li>Images: <a href="./images/" target="_blank" rel="noopener">/images</a></li>
-        </ul>
-      </article>
+    <section class="section">
+      <div class="section-head">
+        <h2 class="serif"><em>What it does</em></h2>
+        <span class="count">Components</span>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <div class="pn">№ 01 · product_scraping.R</div>
+          <h4>Catalog scrape</h4>
+          <p>Pulls 25+ items from ASOS across shoes, bottoms, tops, coats, and accessories. Downloads product images locally and writes <code>products_raw.csv</code>.</p>
+        </div>
+        <div class="feature">
+          <div class="pn">№ 02 · etl.R</div>
+          <h4>ETL into SQLite</h4>
+          <p>Reads the raw CSV, cleans and types the data, and inserts it into a <code>closet</code> table inside <code>closet.db</code>. Idempotent — safe to re-run.</p>
+        </div>
+        <div class="feature">
+          <div class="pn">№ 03 · weatherstack_api.R</div>
+          <h4>Weather fetch</h4>
+          <p>Hits the Weatherstack API with the configured key and saves the current London conditions to <code>weather_data.rds</code> for downstream use.</p>
+        </div>
+        <div class="feature">
+          <div class="pn">№ 04 · ootd_api.R</div>
+          <h4>Rules engine + Plumber API</h4>
+          <p>Two endpoints. Temperature thresholds (≥25°C / 15-24°C / &lt;15°C) and condition flags (rain, sun) decide what items get selected. Output is JSON + an annotated PNG.</p>
+        </div>
+        <div class="feature">
+          <div class="pn">№ 05 · run_pipeline.sh</div>
+          <h4>End-to-end orchestrator</h4>
+          <p>Bash script that runs scrape → ETL → weather fetch → API server → curl-call to <code>/ootd</code>. One command, full pipeline.</p>
+        </div>
+        <div class="feature">
+          <div class="pn">№ 06 · ootd_plot.png</div>
+          <h4>Final artefact</h4>
+          <p>An annotated image of the chosen outfit, captioned with the date, current weather, and temperature. The visible deliverable.</p>
+        </div>
+      </div>
+    </section>
 
-      <article class="card">
-        <img class="preview" src="./ootd_plot.png" alt="Outfit recommender preview plot" />
-      </article>
-    </div>
+    <section class="section">
+      <div class="section-head">
+        <h2 class="serif"><em>Recommendation logic</em></h2>
+        <span class="count">Rules</span>
+      </div>
+      <div class="grid-2">
+        <div>
+          <p class="lead">A deliberately simple rules engine — the goal was to ship something coherent, not to over-engineer.</p>
+          <p><strong>Hot or warm</strong> (≥25°C): light tops and bottoms, no coats. <strong>Mild</strong> (15-24°C): comfortable layers plus a light, non-waterproof coat. <strong>Cold</strong> (&lt;15°C): warmer items and a heavier coat.</p>
+        </div>
+        <div>
+          <p>Two condition flags layer on top. <strong>Rain:</strong> prefer waterproof or rain-specific coats; exclude sunglasses. <strong>Sun:</strong> include sunglasses if the catalog has any.</p>
+          <p>The recommend function lives in <code>ootd_api.R</code> and is the easiest place to extend — add new categories, swap thresholds, or hook in an ML ranker without touching the surrounding pipeline.</p>
+        </div>
+      </div>
+    </section>
 
-    <p class="muted" style="margin-top:18px">Contact: <a href="mailto:uzxo11@gmail.com">uzxo11@gmail.com</a> · GitHub: <a href="https://github.com/uzxo" target="_blank" rel="noopener">@uzxo</a></p>
+    <section class="section">
+      <div class="section-head">
+        <h2 class="serif"><em>How it's built</em></h2>
+        <span class="count">Stack</span>
+      </div>
+      <div class="stack-grid">
+        <div class="row"><b>Language</b><span>R 3.6+, plus a bash orchestrator. <code>curl</code>, <code>SQLite</code>, and <code>ImageMagick</code> on the host.</span></div>
+        <div class="row"><b>Packages</b><span><code>rvest</code> · <code>httr</code> · <code>jsonlite</code> · <code>DBI</code> · <code>RSQLite</code> · <code>plumber</code> · <code>magick</code> · <code>dplyr</code> · <code>magrittr</code></span></div>
+        <div class="row"><b>Data sources</b><span>ASOS catalog (scrape) · Weatherstack API (current conditions, London).</span></div>
+        <div class="row"><b>Storage</b><span>SQLite — one <code>closet</code> table, one <code>weather_data.rds</code> blob. No server.</span></div>
+        <div class="row"><b>Serving</b><span>Plumber API on <code>localhost:8000</code> with <code>/ootd</code> and <code>/rawdata</code> endpoints.</span></div>
+        <div class="row"><b>Output</b><span>Annotated PNG written by <code>magick</code>; JSON returned to the client.</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="serif"><em>Run it</em></h2>
+        <span class="count">Quick start</span>
+      </div>
+<pre class="code"><span class="c"># 1. Set your Weatherstack API key</span>
+export YOUR_ACCESS_KEY=&lt;your_weatherstack_key&gt;
+
+<span class="c"># 2. Run the full pipeline (scrape → ETL → weather → API → plot)</span>
+./run_pipeline.sh $YOUR_ACCESS_KEY
+
+<span class="c"># 3. Open the result</span>
+open ootd_plot.png</pre>
+      <div class="callout" style="margin-top:24px">
+        <b>Note</b>
+        GitHub Pages cannot execute R or bash. To run the pipeline you need R with the listed packages installed locally, plus <code>curl</code>, <code>SQLite</code>, and <code>ImageMagick</code>. The full instructions live in <a href="README.md" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent)">README.md</a>.
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="serif"><em>Artefacts</em></h2>
+        <span class="count">Downloads</span>
+      </div>
+      <div class="artifact-list">
+        <a href="ootd_plot.png" target="_blank" rel="noopener">
+          <span class="title">Sample OOTD plot</span><span class="meta">PNG ↗</span>
+        </a>
+        <a href="README.md" target="_blank" rel="noopener">
+          <span class="title">README</span><span class="meta">Markdown ↗</span>
+        </a>
+        <a href="products_raw.csv" target="_blank" rel="noopener">
+          <span class="title">Scraped product catalog</span><span class="meta">CSV ↗</span>
+        </a>
+        <a href="ootd_api.R" target="_blank" rel="noopener">
+          <span class="title">Plumber API + rules engine</span><span class="meta">ootd_api.R ↗</span>
+        </a>
+        <a href="etl.R" target="_blank" rel="noopener">
+          <span class="title">ETL into SQLite</span><span class="meta">etl.R ↗</span>
+        </a>
+        <a href="weatherstack_api.R" target="_blank" rel="noopener">
+          <span class="title">Weather fetcher</span><span class="meta">weatherstack_api.R ↗</span>
+        </a>
+        <a href="product_scraping.R" target="_blank" rel="noopener">
+          <span class="title">Catalog scraper</span><span class="meta">product_scraping.R ↗</span>
+        </a>
+        <a href="run_pipeline.sh" target="_blank" rel="noopener">
+          <span class="title">End-to-end orchestrator</span><span class="meta">run_pipeline.sh ↗</span>
+        </a>
+        <a href="https://github.com/uzxo/Ghost-Rider/tree/main/projects/outfit-recommender" target="_blank" rel="noopener">
+          <span class="title">Full source</span><span class="meta">GitHub ↗</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site">
+      <span>© <span id="year"></span> Uzair Zaidi</span>
+      <span><a href="../../">← Back to portfolio</a></span>
+    </footer>
   </div>
+
+  <script src="../_shared/page.js"></script>
 </body>
 </html>

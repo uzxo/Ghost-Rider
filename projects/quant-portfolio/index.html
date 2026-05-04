@@ -1,80 +1,215 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Quant Portfolio — Research Framework</title>
-  <meta name="description" content="PIT-safe quant research framework with walk-forward backtesting, regime modeling, ensemble signals, constrained optimization, and robustness checks." />
-  <style>
-    :root{--bg:#0b0f14;--card:#0e141d;--text:#e7eef7;--muted:#9fb0c7;--acc:#63b3ff;--b:#1c2838}
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-    a{color:var(--acc);text-decoration:none} a:hover{text-decoration:underline}
-    .wrap{max-width:1050px;margin:0 auto;padding:26px}
-    .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-    .muted{color:var(--muted)}
-    .hero{margin-top:12px;background:linear-gradient(180deg,rgba(99,179,255,.12),transparent);border:1px solid rgba(99,179,255,.18);border-radius:16px;padding:18px}
-    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .btn{background:var(--acc);color:#05223a;padding:10px 14px;border-radius:10px;font-weight:700;display:inline-block}
-    .btn.s{background:#182332;color:var(--text);border:1px solid #263244}
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:14px}
-    .card{grid-column:span 12;background:var(--card);border:1px solid var(--b);border-radius:14px;padding:14px}
-    img{width:100%;border-radius:12px;border:1px solid var(--b);background:#0c121a}
-    .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#0c121a;border:1px solid #1c2838;border-radius:10px;padding:10px;overflow:auto}
-    @media(min-width:980px){ .half{grid-column:span 6} }
-  </style>
+  <title>Quant Portfolio — Research Framework · Uzair Zaidi</title>
+  <meta name="description" content="A bias-aware quant research pipeline: PIT-safe data, walk-forward backtesting, regime modelling, ensemble signals, constrained optimisation, and bootstrap robustness." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../_shared/editorial.css">
+  <script>
+    (function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+  </script>
 </head>
 <body>
   <div class="wrap">
-    <div class="top">
-      <div>
-        <h1 style="margin:0">Quant Portfolio — Research Framework</h1>
-        <div class="muted">PIT-safe data • Walk-forward (purge/embargo) • Regimes (HMM) • Ensemble signals • Constrained optimizer • Robustness</div>
+
+    <header class="site">
+      <div class="mark">
+        <span class="num">№ 03</span>
+        <span class="name"><a href="../../">Uzair Zaidi</a></span>
       </div>
-      <a class="muted" href="/Ghost-Rider/">← Back to Portfolio</a>
+      <nav class="site">
+        <a href="../../#work">Work</a>
+        <a href="../../#about">About</a>
+        <a href="../../#contact">Contact</a>
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" id="themeIcon"></svg>
+          <span id="themeLabel">Light</span>
+        </button>
+      </nav>
+    </header>
+
+    <div class="breadcrumb">
+      <a href="../../">Portfolio</a><span class="sep">/</span><a href="../../#work">Work</a><span class="sep">/</span>Quant Portfolio
     </div>
 
-    <div class="hero">
-      <div>
-        End-to-end research pipeline built to reduce look-ahead bias via point-in-time data handling,
-        walk-forward validation, regime detection, transaction cost modeling, and robustness testing
-        (bootstrap + stress regimes + holdouts).
-      </div>
-      <div class="btns">
-        <a class="btn s" href="./quant_research/requirements.txt" target="_blank" rel="noopener">requirements.txt</a>
-        <a class="btn s" href="https://github.com/uzxo/Ghost-Rider/tree/main/projects/quant-portfolio" target="_blank" rel="noopener">View Code</a>
-        <a class="btn" href="./quant_research/Executive_Summary_Updated.docx" target="_blank" rel="noopener">Executive Summary</a>
-      </div>
-    </div>
+    <section class="hero">
+      <div class="eyebrow">Project № 03 · Quant Research / Python</div>
+      <h1 class="lede serif">A <em>bias-aware</em> quant pipeline, end to end.</h1>
+      <p class="dek">From point-in-time data to optimised portfolio: walk-forward backtests with purge and embargo, HMM-based regime overlays, an ensemble forecast, transaction-cost-aware optimisation, and bootstrap confidence intervals. The whole thing is config-driven and reproducible.</p>
 
-    <div class="grid">
-      <div class="card half">
-        <h3 style="margin:0 0 8px">Quick start</h3>
-        <div class="code">pip install -r quant_research/requirements.txt
-python quant_research/main.py --config quant_research/config/base.yaml</div>
-        <p class="muted" style="margin:8px 0 0">GitHub Pages can’t run Python; this page is a showcase + links.</p>
+      <div class="cta-row">
+        <a class="cta primary" href="quant_research/Quant_Executive_Summary.pdf" target="_blank" rel="noopener">
+          Read executive summary
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </a>
+        <a class="cta" href="https://github.com/uzxo/Ghost-Rider/tree/main/projects/quant-portfolio" target="_blank" rel="noopener">View source</a>
+        <a class="cta" href="../../">Back to portfolio</a>
       </div>
 
-      <div class="card half">
-        <h3 style="margin:0 0 8px">What’s inside</h3>
-        <ul style="margin:0">
-          <li>Loaders: prices, macro, fundamentals + PIT store</li>
-          <li>Models: ElasticNet, XGB/LGBM, HMM regimes, stacked ensemble</li>
-          <li>Portfolio: optimizer, constraints, cost model</li>
-          <li>Evaluation: metrics, attribution, robustness, plots</li>
-          <li>Tests: data integrity checks</li>
-        </ul>
+      <div class="stats">
+        <div class="stat"><b>Modules</b><span class="serif">8</span></div>
+        <div class="stat"><b>Models</b><span class="serif">4</span></div>
+        <div class="stat"><b>Validation</b><span class="serif">Walk-fwd</span></div>
+        <div class="stat"><b>Robustness</b><span class="serif">Bootstrap</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="serif"><em>What it is</em></h2>
+        <span class="count">Overview</span>
+      </div>
+      <div class="grid-2">
+        <div>
+          <p class="lead">A research-grade quant framework designed around a single principle: do not let information from the future leak into the past. Most academic-style backtests fail this test. This one is built so that every signal, every model fit, and every portfolio decision is computed with only the data that would have been available at that point in time.</p>
+          <p>The pipeline ingests prices, macro series, and fundamentals into a point-in-time store; engineers technical, fundamental, and factor-exposure features; trains an ensemble of linear and tree-based models on a walk-forward schedule with purge and embargo; overlays a hidden Markov regime model; runs the resulting signals through a constrained optimiser with a transaction-cost model; and finally evaluates the result with bootstrap confidence intervals and stress-regime holdouts.</p>
+        </div>
+        <div>
+          <p>The output is a strategy that does not just look good in-sample — it is stress-tested across regimes, costs, and the random seeds that lab-grade backtests usually paper over. The five charts below come straight from the latest run.</p>
+          <p>Everything is config-driven. Swap the universe, retune the optimiser, or change the cost assumption from a YAML file. No code edits required for routine experiments.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="serif"><em>Results</em></h2>
+        <span class="count">Latest run</span>
       </div>
 
-      <div class="card"><h3 style="margin:0 0 8px">Portfolio vs S&P 500</h3><img src="./quant_research/output/equity_curve.png" alt="Equity curve vs S&P 500"></div>
-      <div class="card"><h3 style="margin:0 0 8px">Rolling Sharpe / Volatility / Drawdown</h3><img src="./quant_research/output/rolling_metrics.png" alt="Rolling metrics"></div>
-      <div class="card half"><h3 style="margin:0 0 8px">Bootstrap Sharpe (CI)</h3><img src="./quant_research/output/bootstrap_sharpe.png" alt="Bootstrap Sharpe distribution"></div>
-      <div class="card half"><h3 style="margin:0 0 8px">Current Portfolio Weights</h3><img src="./quant_research/output/portfolio_weights.png" alt="Portfolio weights"></div>
-      <div class="card"><h3 style="margin:0 0 8px">Factor Attribution</h3><img src="./quant_research/output/factor_attribution.png" alt="Factor attribution"></div>
-    </div>
+      <figure class="figure" style="margin-bottom:18px">
+        <img src="quant_research/output/equity_curve.png" alt="Portfolio equity curve vs S&P 500 benchmark" />
+        <figcaption>Fig 01 · Portfolio equity curve vs S&amp;P 500 — walk-forward, post-cost</figcaption>
+      </figure>
 
-    <p class="muted" style="margin-top:16px">Contact: <a href="mailto:uzxo11@gmail.com">uzxo11@gmail.com</a> · GitHub: <a href="https://github.com/uzxo" target="_blank" rel="noopener">@uzxo</a></p>
+      <figure class="figure" style="margin-bottom:18px">
+        <img src="quant_research/output/rolling_metrics.png" alt="Rolling Sharpe, volatility, and drawdown" />
+        <figcaption>Fig 02 · Rolling Sharpe, volatility, and drawdown</figcaption>
+      </figure>
+
+      <div class="fig-grid">
+        <figure class="figure">
+          <img src="quant_research/output/bootstrap_sharpe.png" alt="Bootstrap distribution of Sharpe ratio" />
+          <figcaption>Fig 03 · Bootstrap Sharpe distribution &amp; 95% CI</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="quant_research/output/portfolio_weights.png" alt="Current portfolio weights" />
+          <figcaption>Fig 04 · Current portfolio weights</figcaption>
+        </figure>
+      </div>
+
+      <figure class="figure" style="margin-top:18px">
+        <img src="quant_research/output/factor_attribution.png" alt="Factor attribution" />
+        <figcaption>Fig 05 · Factor attribution — return decomposed by exposure</figcaption>
+      </figure>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="serif"><em>What's inside</em></h2>
+        <span class="count">Modules</span>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <div class="pn">№ 01 · features/</div>
+          <h4>Point-in-time feature engineering</h4>
+          <p>Technical, fundamental, macro, and factor-exposure features computed on a PIT store so no signal sees information that did not exist at decision time.</p>
+        </div>
+        <div class="feature">
+          <div class="pn">№ 02 · models/</div>
+          <h4>Ensemble forecasts</h4>
+          <p>ElasticNet, XGBoost, and LightGBM trained on a walk-forward schedule with purge and embargo, then stacked. HMM regime model runs as a separate overlay.</p>
+        </div>
+        <div class="feature">
+          <div class="pn">№ 03 · signals/</div>
+          <h4>Signal combination &amp; cost model</h4>
+          <p>Cross-sectional normalisation, ensemble combine, and a transaction cost model that bites at the optimiser stage — not just at evaluation.</p>
+        </div>
+        <div class="feature">
+          <div class="pn">№ 04 · portfolio/</div>
+          <h4>Constrained optimisation</h4>
+          <p>Mean-variance optimiser with sector caps, position limits, turnover constraints, and a leverage budget. Cost-aware target weights, not paper weights.</p>
+        </div>
+        <div class="feature">
+          <div class="pn">№ 05 · backtest/</div>
+          <h4>Walk-forward engine</h4>
+          <p>Universe selection and walk-forward backtest engine with rolling refits, no peeking, and full audit logs of which model trained on which data.</p>
+        </div>
+        <div class="feature">
+          <div class="pn">№ 06 · evaluation/</div>
+          <h4>Robustness &amp; attribution</h4>
+          <p>Performance metrics, factor attribution, bootstrap confidence intervals, and a stress-regime holdout to catch strategies that only work in calm markets.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="serif"><em>How it's built</em></h2>
+        <span class="count">Stack</span>
+      </div>
+      <div class="stack-grid">
+        <div class="row"><b>Language</b><span>Python 3 — config-driven, every run reproducible from a YAML file.</span></div>
+        <div class="row"><b>Data</b><span>yfinance for prices; placeholders for FRED macro and fundamentals; a PIT store guards against look-ahead.</span></div>
+        <div class="row"><b>Models</b><span>scikit-learn (ElasticNet), XGBoost, LightGBM, hmmlearn (HMM regime model), all wired through a stacked ensemble.</span></div>
+        <div class="row"><b>Optimisation</b><span>Mean-variance with explicit constraints (sector caps, turnover, leverage) and a cost model the optimiser actually sees.</span></div>
+        <div class="row"><b>Evaluation</b><span>Custom metrics, factor attribution, bootstrap CI, stress-regime holdout. Plots ship as PNG artefacts in <code>output/</code>.</span></div>
+        <div class="row"><b>Tests</b><span>Data integrity tests in <code>tests/test_data_integrity.py</code> — catches PIT violations and missing-bar issues before a model ever sees the data.</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="serif"><em>Run it</em></h2>
+        <span class="count">Quick start</span>
+      </div>
+<pre class="code"><span class="c"># 1. Install dependencies</span>
+pip install -r quant_research/requirements.txt
+
+<span class="c"># 2. Run the full pipeline (config-driven)</span>
+python quant_research/main.py --config quant_research/config/base.yaml
+
+<span class="c"># 3. Outputs land in quant_research/output/</span>
+ls quant_research/output/
+<span class="c"># equity_curve.png  rolling_metrics.png  bootstrap_sharpe.png</span>
+<span class="c"># portfolio_weights.png  factor_attribution.png</span></pre>
+      <div class="callout" style="margin-top:24px">
+        <b>Note</b>
+        GitHub Pages serves static files only — the figures above were generated by running the pipeline locally. To reproduce, clone the repo and run the commands above. Configuration lives under <code>quant_research/config/</code>.
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 class="serif"><em>Artefacts</em></h2>
+        <span class="count">Downloads</span>
+      </div>
+      <div class="artifact-list">
+        <a href="quant_research/Quant_Executive_Summary.pdf" target="_blank" rel="noopener">
+          <span class="title">Executive Summary</span><span class="meta">PDF · Open ↗</span>
+        </a>
+        <a href="quant_research/Executive_Summary_Updated.docx" target="_blank" rel="noopener">
+          <span class="title">Executive Summary — extended write-up</span><span class="meta">DOCX · Download ↗</span>
+        </a>
+        <a href="quant_research/requirements.txt" target="_blank" rel="noopener">
+          <span class="title">Python requirements</span><span class="meta">requirements.txt ↗</span>
+        </a>
+        <a href="https://github.com/uzxo/Ghost-Rider/tree/main/projects/quant-portfolio" target="_blank" rel="noopener">
+          <span class="title">Source code</span><span class="meta">GitHub ↗</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site">
+      <span>© <span id="year"></span> Uzair Zaidi</span>
+      <span><a href="../../">← Back to portfolio</a></span>
+    </footer>
   </div>
+
+  <script src="../_shared/page.js"></script>
 </body>
 </html>
-
