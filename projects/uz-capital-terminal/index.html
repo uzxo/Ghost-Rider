@@ -276,6 +276,35 @@
 
     <section class="section">
       <div class="section-head">
+        <h2 class="serif"><em>Run locally</em></h2>
+        <span class="count">Live prices</span>
+      </div>
+      <div class="grid-2" style="margin-bottom:24px">
+        <div>
+          <p class="lead" style="font-family:'Fraunces',serif;font-weight:300;font-size:1.18rem;line-height:1.55;color:var(--ink)">The hosted version pulls prices through a chain of free CORS proxies. They work, but they get rate-limited under public traffic.</p>
+          <p style="color:var(--ink-soft);font-size:1rem;line-height:1.7;max-width:54ch">Running the terminal off your own machine bypasses the shared rate limits — Yahoo Finance and CoinGecko respond directly to your IP, and the hero total ticks live within a couple of seconds.</p>
+        </div>
+        <div>
+          <p style="color:var(--ink-soft);font-size:1rem;line-height:1.7;max-width:54ch">The repo ships with a one-command launcher: <code style="font-family:'JetBrains Mono',monospace;font-size:.88em;background:#0a0b0e;padding:1px 6px;border-radius:4px;border:1px solid var(--rule)">start.sh</code>. It boots a static HTTP server on port 8090 and opens the terminal in your default browser.</p>
+          <p style="color:var(--ink-soft);font-size:1rem;line-height:1.7;max-width:54ch">Requires Python 3 (preinstalled on macOS and most Linux distros). Nothing else.</p>
+        </div>
+      </div>
+<pre style="background:#0a0b0e;border:1px solid var(--rule);border-radius:10px;padding:18px;overflow:auto;font-family:'JetBrains Mono',monospace;font-size:.84rem;line-height:1.6;color:var(--ink);margin:0"><span style="color:var(--ink-faint)"># 1. Clone the repo (or download the project folder)</span>
+git clone https://github.com/uzxo/Ghost-Rider.git
+cd Ghost-Rider/projects/uz-capital-terminal
+
+<span style="color:var(--ink-faint)"># 2. Launch — opens http://localhost:8090/terminal.html in your browser</span>
+bash start.sh
+
+<span style="color:var(--ink-faint)"># 3. Stop with Ctrl+C when done.</span></pre>
+      <div style="margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.10em;text-transform:uppercase;color:var(--ink-faint);display:flex;gap:18px;flex-wrap:wrap">
+        <span><a href="start.sh" style="color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:1px">View start.sh ↗</a></span>
+        <span><a href="terminal.html" style="color:var(--ink-soft);border-bottom:1px solid var(--rule-strong);padding-bottom:1px">Open hosted demo ↗</a></span>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
         <h2 class="serif"><em>Disclaimer</em></h2>
         <span class="count">Read me</span>
       </div>
